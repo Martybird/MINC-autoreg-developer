@@ -1,0 +1,11 @@
+autocrop
+version
+mritotal
+mritoself
+mritotal.cfg
+mritotal.default.cfg
+mritotal.icbm.cfg
+Makefile.in
+Makefile
+.deps
+xfmtool

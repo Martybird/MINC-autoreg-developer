@@ -1,0 +1,6 @@
+If you have just checked the sources out of CVS, you will discover several
+files are missing, most notably the configure script.
+
+To regenerate the missing files, run the provided shell script:
+
+	./autogen.sh

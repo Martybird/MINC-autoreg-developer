@@ -1,0 +1,228 @@
+                 MNI Automated Linear Registration Package
+
+
+DESCRIPTION
+-----------
+
+In both diagnostic and research applications, the interpretation of
+magnetic resonance (MR) images of the human brain is facilitated when
+different data sets can be compared by visual inspection of equivalent
+anatomical planes.  Quantitative analysis with pre-defined atlas
+templates often requires the initial alignment of atlas and image
+planes.  Unfortunately, the axial planes acquired during separate
+scanning sessions are often different in their relative position and
+orientation, and these slices are not coplanar with those in the
+atlas.
+ 
+A completely automatic method has been developed, based on
+multi-scale, three dimensional (3D) cross-correlation, to register a
+given volumetric data set to an average MRI brain (n > 300) aligned
+with the Talairach stereotaxic coordinate system.  Once the data set
+is resampled by the transformation recovered by the algorithm, atlas
+slices can be directly super-imposed on the corresponding slices of
+the resampled volume (see below).  The use of such a standardized
+space also allows the direct comparison, voxel-to-voxel, of two or
+more data sets brought into stereotaxic space.
+
+A Perl script (mritotal) implements the multi-resolution fitting
+strategy that has been used to map more than 500 brains into
+stereotaxic space at the Montreal Neurological Institute.  At the
+heart of this procedure is minctracc, the program that automatically
+finds the best linear transformation to map one volumetric data set
+(stored in MINC format, see below) on to another.  The program uses
+optimization over a user selectable number of parameters to identify
+the best (according to a user-selected objective function)
+transformation mapping voxel values of the first data set into the
+second.
+
+A paper describing the automatic linear stereotaxic registration
+procedure has appeared in:
+
+   D.  L.  Collins, P.  Neelin, T.  M.  Peters and A.  C.  Evans,
+   Automatic 3D Inter-Subject Registration of MR Volumetric Data 
+	in Standardized Talairach Space,
+   Journal of Computer Assisted Tomography, 18(2) p192-205, 1994
+
+The nonlinear registration procedure is described in:
+
+   DL Collins, CJ Holmes, TM Peters and AC Evans,
+   Automatic 3D model-based neuro-anatomical segmentation
+   Human Brain Mapping, 3(3) p 190-208, 1995
+
+
+INSTALLING MNI_AUTOREG
+----------------------
+
+The install directions for this package are contained in the files
+INSTALL.quick and INSTALL.  What follows here are instructions for 
+installing *prerequisite* software.
+
+You can obtain a copy of the latest version of the MNI_AutoReg
+software from:
+
+   http://packages.bic.mni.mcgill.ca/tgz
+
+Look for a file named mni_autoreg-x.yy.tar.gz (where x.yy is the release
+number).
+ 
+MNI_AutoReg requires that both the MINC and netCDF packages be built and
+installed first.  The MINC file format is a highly flexible medical
+image file format built on top of the netCDF generalized data format.
+You should be able to get them both from 
+
+   http://packages.bic.mni.mcgill.ca/tgz
+
+If you prefer, you can get netCDF from its home site, the Unidata Program
+Centre at the University Corporation for Atmospheric Research:
+
+   ftp://unidata.ucar.edu/pub/netcdf
+
+You will also need a recent version of Perl 5; Perl 5.002 or later is
+required.
+
+You can always find the latest version of Perl at at any mirror of the
+Comprehensive Perl Archive Network (CPAN)
+
+   http://www.perl.com/
+
+
+In addition to Perl itself, you will need the Getopt::Tabular module.
+This is also available at
+
+   http://www.cpan.org/
+
+The model used for stereotaxic registration is based on the 305 brain
+average MRI volume created at the Montreal Neurological Institute.
+Because of its size, this model is *not* included with the MNI_AutoReg
+package.  But, it too is available from
+
+   http://pacakges.bic.mni.mcgill.ca/tgz/mni_autoreg_model-x.y.tar.gz
+
+The version of mni_autoreg_model is NOT tied to the version of
+mni_autoreg.  Choose the highest numbered version.
+
+
+USING MNI_AUTOREG
+-----------------
+
+The primary scripts for registration are:
+
+   mritotal:      the script that calls mincblur and minctracc to achieve
+                  stereotaxic registration
+
+   mritoself:     intra-subject registration
+
+
+Other scripts or programs installed are:
+
+   autocrop:      for extracting and manipulating bounds of a MINC file
+
+   make_model:    generate appropriate blurred and subsampled images
+                  required for `mritotal'
+
+   make_phantom:  generate ellipsoid or rectangular phantom images
+
+   mincbbox:      extract bounding box of image
+
+   mincblur:      a program for volumetric convolution with a Gaussian 
+                  blurring kernel
+
+   mincchamfer:   compute a Chamfer distance transform of an image
+
+   minctracc:     a program to estimate the transformation required 
+                  for registration
+
+   xfmtool:       perform miscellaneous operations on transform (.xfm) files
+
+
+Some of these ship with manual pages, and all respond to `-help'.  For further
+information, use the source, Luke!  We'd be extremely please to receive
+documentation updates for any of the above!
+
+
+PORTABILITY
+-----------
+
+We have gone to great lengths to ensure that MNI AutoReg compiles and
+runs correctly on a variety of Unix and Unix-like systems.  However,
+we only have ready access to Linux, IRIX, and SunOS systems;
+successful use of the package on other systems is not necessarily
+assured.  (For that matter, its successful use anywhere is not assured
+-- you get what you pay for!  See the COPYING file.)
+
+That said, if you have trouble building and/or testing the package,
+we'd like to hear about it.  But just telling us "it didn't build" or
+"a test failed" is not enough -- ideally, you would provide us with a
+detailed breakdown of your system configuration (architecture,
+operating system and OS version, compiler and compiler version, C
+library -- including header files -- and its version), and a
+comprehensive explanation of what went wrong and how we can fix it
+without interfering with portability to any *other* system.  We don't
+expect that every bug report will have this amount of information, but
+keep in mind that that's the ideal to strive for.
+
+Please do not complain of portability problems unless you have first
+made sure that your C compiler and library (including header files!)
+are ANSI compliant.
+
+
+CONFIGURATION AND PROTOCOL FILES
+--------------------------------
+
+Mritotal requires two external files to run.  These are the
+configuration file (mritotal.cfg) and protocol file (default is
+mritotal.default.cfg, but you can specify others using the -protocol
+option).  If you follow all the above instructions, then these files
+will be correctly customized and installed for your site.  If things
+go wrong, though, you should know the following:
+
+   * The directory where the configuration and protocol file(s) are
+     installed defaults to /usr/local/etc/mni_autoreg.  If you change this
+     (ie. move the files after installing them) *without* rerunning "configure"
+     and "make", then mritotal will not be able to find them.
+     That's because "make" modifies mritotal so that it points
+     to the directory for config files.
+ 
+   * The location of the model files is specified in the configuration
+     file.  You should check that the directory where you installed
+     the model files (which is specified in the Makefile for the
+     mni_autoreg_model package) is the same as the directory 
+     given in mritotal.cfg (using the -modeldir option).  For
+     instance, if mni_autoreg_model/Makefile has the line:
+
+        MODELDIR    = /data/avgbrain1/brain/images/model
+
+     then mni_autoreg's perl/mritotal.cfg should have the line:
+
+        -modeldir /data/avgbrain1/brain/images/model
+
+   * If you find it necessary to make a new protocol for your site's
+     data (for instance, if your MRI data consistently covers
+     considerably more than the brain, but the heuristic used by the
+     default protocol doesn't work -- see the mritotal man page for
+     more information), then you should copy and change the default
+     protocol file.  For instance, you might want to call the protocol
+     "mysite" -- in that case, copy mritotal.default.cfg to
+     mritotal.mysite.cfg, and be *sure* to edit mritotal.cfg so that
+     it uses the new protocol by default.  That is, make sure it has
+     "-protocol mysite" instead of "-protocol default".
+
+     That said, please notify Louis Collins <louis@bic.mni.mcgill.ca> if
+     the heuristics used by the default protocol don't work for your
+     data.
+
+Good luck!  Please let us know if anything goes wrong with the
+installation or testing:
+
+Louis Collins                       Steve Robbins
+<louis@bic.mni.mcgill.ca>           <stever@bic.mni.mcgill.ca>
+tel:(514)-398-1726,1996 
+
+McConnell Brain Imaging Center   
+NeuroImaging Laboratory		 
+Montreal Neurological Institute  
+3801 University St.
+Montreal, Quebec.  H3A 2B4	  
+
+Fax:(514)-398-8948  
+

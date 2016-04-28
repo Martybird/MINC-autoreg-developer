@@ -1,0 +1,106 @@
+2005-09-14  Andrew L Janke  <a.janke@gmail.com> 
+	* Fixed bug in autocrop (thanks Ej Nikelski)
+
+2005-08-03  Andrew L Janke  <a.janke@gmail.com>
+
+	* Removed internal version of mni_perllib
+	* Updated all scripts to use MNI::Perl stuff
+	* Added sensical -version options to all scripts
+
+2003-06-12  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* Startup.pm (SelfAnnounce): Remove "defined @argv", it is
+	deprecated construct and perl warns noisily about it.
+
+2001-02-16  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* Makefile.am (install-exec-local): Need "install-exec-local" rule
+ 	in both clauses of the conditional.  Otherwise, the Makefile may
+ 	be generated without the rule, which is referenced by other rules
+ 	(install-exec-am).  This upsets some makes.  Reported by Helmut
+ 	Lucht <Helmut.Lucht@pet.mpin-koeln.mpg.de>.
+
+2000-05-25  Louis COLLINS  <louis@bic.mni.mcgill.ca>
+
+	* mritotal.in (SetupNLFits): changed iterations, weight and
+ 	stiffness to have different values for optical flow and xcorr.
+
+	(SetupFits): tested if optical flow was requested when doing
+ 	linear fits.  If so, then we default back to xcorr, only for the
+ 	linear fits.
+
+2000-05-24  Louis COLLINS  <louis@bic.mni.mcgill.ca>
+
+	* mritotal.in (Initialize): added optical flow to the list of accepted
+	  objective functions for nonlinear registration.
+
+2000-05-02  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* mritotal.in (pad_amounts): fix for hypothetical case where more
+ 	than two blurring kernels are specified.
+
+2000-05-01  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* mritotal.in (IntensityBlur): properly remove the intermediate
+ 	file ${tmp_blur}_blur.mnc.
+
+2000-04-06  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* removed all traces of `animal' from mritotal script.
+
+2000-03-21  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* mritotal.in (CreateInfoText): removed statement that `mritotal'
+	handles only linear fits.
+
+2000-03-08  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* mritotal.1: document new options -nonlinear, -startlevel,
+	-stoplevel.
+
+2000-02-26  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* string_utilities.pl: new.  Needed for xfmtool.
+	* Makefile.am (perllib_DATA): add string_utilities.pl.
+
+2000-02-10  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* mritotal.in (perform_fit): treat `animal' as a synonym
+	form `minctracc' (with -nonlinear added, later).
+
+	* xfmtool.in: new.  Required for new mritotal.
+	* Makefile.am (script_in, bin_SCRIPTS): add xfmtool.in, xfmtool
+
+2000-02-09  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am (modeldir): set to pkgdatadir.
+
+2000-02-08  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* mritotal.in: replaced by current development version of nlfit.
+
+	* Makefile.am: make all generated files depend on the *.in files.
+
+2000-02-02  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* version.c: include <stdio.h>
+
+Sun Jan 30 09:28:03 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* build_perl_stuff: add --srcdir option to support srcdir !=
+	builddir.
+
+Fri Jan 28 11:06:45 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am: perl helper files (*.pl, *.pm) are installed into 
+	the package libdir by default; this allows non-root to install 
+	by simply setting the --prefix at configure time.
+
+	* autocrop.in: 
+	* mritoself.in:
+	* mritotal.in: add package libdir to perl's search path, in order
+	to find the *.pl and *.pm files.	
+
+	* version.c: include <config.h> rather than "../version.h" to get
+	the version strings.
+

@@ -1,0 +1,17 @@
+/.cvsignore/96.2/Mon Jan 31 18:28:41 2000//
+/Makefile.am/1.4/Wed Jul 20 20:45:48 2005//
+/c2p.c/1.2/Thu Feb 12 05:54:27 2004//
+/cov_to_praxes.c/96.7/Thu Nov 30 09:07:32 2006//
+/default_def.c/96.11/Thu Nov 30 09:07:32 2006//
+/init_params.c/96.12/Thu Nov 30 09:07:32 2006//
+/make_rots.c/96.7/Wed Nov 29 09:09:33 2006//
+/matrix_basics.c/96.6/Wed Nov 29 09:09:33 2006//
+/procrustes.c/1.10/Thu Feb 12 16:22:43 2004//
+/quad_max_fit.c/96.7/Thu Nov 30 09:07:32 2006//
+/quaternion.c/96.5/Thu Nov 30 09:07:32 2006//
+/random_numbers.c/1.4/Wed Nov 29 09:09:33 2006//
+/rotmat_to_ang.c/96.6/Thu Nov 30 09:07:32 2006//
+/stats.c/1.8/Thu Nov 30 09:07:32 2006//
+/transformations.c/1.13/Wed Nov 29 09:09:33 2006//
+D/FROM_LIONEL////
+D/Other_progs////

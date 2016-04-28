@@ -1,0 +1,5 @@
+.warned
+Makefile.in
+Makefile
+.deps
+mincblur

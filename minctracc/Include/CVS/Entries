@@ -1,0 +1,24 @@
+/amoeba.h/1.3/Wed Nov 29 09:09:32 2006//
+/constants.h/96.4/Tue Feb  4 06:08:44 2003//
+/cov_to_praxes.h/96.0/Wed Aug 21 18:21:43 1996//
+/deform_support.h/1.3/Wed Nov 29 09:09:32 2006//
+/extras.h/1.4/Thu Nov 30 09:07:31 2006//
+/init_lattice.h/96.3/Wed Nov 29 09:09:32 2006//
+/interpolation.h/96.3/Wed Nov 29 09:09:32 2006//
+/make_rots.h/96.4/Wed Nov 29 09:09:32 2006//
+/matrix_basics.h/96.2/Wed Nov 29 09:09:32 2006//
+/minctracc.h/96.11/Wed Nov 29 09:09:32 2006//
+/point_vector.h/96.2/Wed Nov 29 09:09:32 2006//
+/quad_max_fit.h/1.4/Wed Nov 29 09:09:32 2006//
+/quaternion.h/96.3/Tue Feb  4 06:08:44 2003//
+/rotmat_to_ang.h/96.2/Wed Nov 29 09:09:32 2006//
+/segment_table.h/96.2/Wed Nov 29 09:09:32 2006//
+/stats.h/1.6/Wed Nov 29 09:09:32 2006//
+/sub_lattice.h/1.4/Wed Nov 29 09:09:32 2006//
+/super_sample_def.h/96.4/Wed Nov 29 09:09:32 2006//
+/vox_space.h/1.4/Wed Nov 29 09:09:32 2006//
+/local_macros.h/96.3/Fri Mar 21 17:02:00 2008//
+/arg_data.h/96.8/Result of merge+Tue Oct 14 18:45:40 2008//
+/globals.h/96.11/Result of merge//
+/objectives.h/96.3/Result of merge+Tue Oct 14 18:46:33 2008//
+D

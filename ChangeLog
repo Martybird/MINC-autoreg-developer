@@ -1,0 +1,399 @@
+
+2010-04-01  Andrew L Janke  <a.janke@gmail.com>
+	* minctracc/Extra_progs/rand_param.c: changed from <time.h> to <sys/time.h>
+		for cygwin
+
+2009-07-23  Claude Lepage <claude@bic.mni.mcgill.ca>
+	* fixed one bug in apodize_data.c for ABS(step) in one direction
+	* now use VIO_X, VIO_Y, VIO_Z (no more X, Y, Z) in mincblur and 
+		make it invariant to dimension order
+
+2009-06-05  Claude Lepage <claude@bic.mni.mcgill.ca>
+	* Free memory after usage in mincblur.
+
+2009-04-03  D. Louis Collins <louis.collins@mcgill.ca>
+	* added Andrew's changes so that input source and target volumes are read in as DOUBLE.  Modified the deformation code so that deformation field are created and manipulated as DOUBLES.  Simplified the non-linear objective function code to deal only with DOUBLES (and not all possible types).
+
+2009-04-01  Andrew L Janke  <a.janke@gmail.com>
+	* Fixed bug in mritoself with same named files
+		in different directories (thanks Soren!)
+
+2009-03-31  Andrew L Janke  <a.janke@gmail.com>
+   * FAQ, perl/autocrop.1, perl/mritoself.in, perl/mritotal.1
+      perl/mritotal.cfg.in, perl/mritotal.in:
+         Changed default model to average305_t1_tal_lin
+         Changed model dir to $prefix/share/mni-models
+   * Include/globals.h: Added Default text to arguments for 
+      interpoation options
+
+2009-03-23  Claude Lepage <claude@bic.mni.mcgill.ca>
+	* disable file compression (minc2) on temporary files in make_model.in
+
+2009-03-13  Claude Lepage <claude@bic.mni.mcgill.ca>
+	* fixed a bug for the offsets in minctracc/Volume/init_lattice.c
+	* free memory after usage in minctracc
+
+2008-10-08  D. Louis Collins <louis.collins@mcgill.ca>
+	* added -nmi option (normalized mutual information) as an objective
+	  function for linear registration.
+	
+2008-02-07  Andrew L Janke <a.janke@gmail.com>
+	* added a bugfix to xfmtool from Jim Nikelski
+
+2006-11-30  Andrew L Janke <a.janke@gmail.com>
+	* many changes (many) for a clean minc 2.0 build
+
+2006-06-04  Andrew L Janke <a.janke@gmail.com>
+	* Fixed a 64 bit problem with function pointers and ParseArgv 
+	   (thanks Jason!)
+
+2006-05-30  Andrew L Janke <a.janke@gmail.com>
+	* Added an include fix to get_history.c (thanks claude)
+
+2006-04-06  Andrew L Janke <a.janke@gmail.com>
+	* Fixed use of self_announce in mritotal and mritoself
+	
+2006-03-31  Andrew L Janke <a.janke@gmail.com>
+	* Fixed use declaration of split_path in autocrop
+	
+2005-10-01  Andrew L Janke  <a.janke@gmail.com>
+	* Added vladimir fonovs changes to xfmtool that allows a .gz grid xfm
+	
+2005-08-03  Andrew L Janke  <a.janke@gmail.com>
+	* Finished perl perllib stuff (finally)
+
+2005-07-20  Andrew Janke <a.janke@gmail.com>
+	* Complete rewrite of the autoconf stuff (configure.in -> configure.am)
+	* Many changes to includes of files (float.h, limits.h, etc)
+	* Removed old VOLUME_IO cruft #defines
+	* Fixed up all Makefile.am's in subdirs
+	* Removed all things in Proglib that are now part of MINC proper
+	* Still working on fixing up perl subdirectory - removing mni_perllib
+
+2005-06-28  Andrew Janke <a.janke@gmail.com>
+	* Added masking for feature volumes from Patricia Le Nezet & Irina Kezele
+
+2005-01-29  Andrew Janke <a.janke@gmail.com>
+	* removed #include <malloc.h> from mincblur build to assist OSX build
+
+2004-03-18  Andrew Janke <rotor@cmr.uq.edu.au>
+	* changed make_model from csh to sh (Cygwin has no csh by default)
+
+2004-02-08  Andrew Janke <rotor@cmr.uq.edu.au>
+	* removed all the public/private syntatic sugar (private->static)
+	* Added use of FindBin::Bin to perl progs for libs, data and config
+	    the old method failed with binary distributions with a prefix
+
+2004-02-04  patricia Le Nezet <lenezet@bic.mni.mcgill.ca>
+	* fixed direction cosines problems
+
+2002-03-26  Steve M. Robbins  <steve@nyongwa.montreal.qc.ca>
+	* configure.in: Updated to conform to autoconf 2.5x.  Use the BIC
+	standard macros in directory m4; these need to be checked out from
+	repository 'mni-acmacros'.
+
+	* acinclude.m4: Removed.
+
+	* autogen.sh: Invoke aclocal with "-I m4" option.	
+
+	* Makefile.am: Invoke aclocal with "-I m4" option.  Distribute
+	the m4/*.m4 files.
+
+	* Globally replace include of <internal_volume_io.h> by
+	<volume_io/internal_volume_io.h> to match practice of MINC 0.7.
+
+2001-02-16  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+	* configure.in: Set VERSION to 0.98k.
+
+2001-01-28  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+	* INSTALL.quick: Updated to account for changes to configure.
+
+2001-01-25  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+	* configure.in: Do not automatically add lib and include
+	directories from /usr/local and ${prefix}.  Add configure flag
+	--with-build-path to allow specifying extra locations for the
+	compiler to look.
+	Set VERSION to 0.98j.
+
+2000-05-19  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* autogen.sh: run `autoheader' before `automake'.  In order for
+ 	the autoheader-generated file `config.h.in' to appear in the
+ 	distribution list, it must exist before `automake' is run.
+
+2000-05-12  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* Testing/Makefile.am (ellipse4.mnc): make sure we look
+	in $(srcdir) for tps.xfm.
+
+	* INSTALL.quick: point to README.CVS.
+
+	* README: note current version; add pointers to INSTALL.quick and
+ 	INSTALL.
+
+2000-05-11  Louis COLLINS  <louis@bic.mni.mcgill.ca>
+
+	* AUTHORS (contact): changed the contact list to include Steve and
+	  myself.
+
+	* README:  added reference to the nonlinear registration procedure
+
+	* COPYING: added reference to the nonlinear registration procedure
+
+2000-04-07  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: consistently quote variables in `test "$var" = val'
+	constructs to avoid the shell error in the case that the variable
+	value has spaces or is the null string.
+
+2000-04-06  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Testing/Makefile.am (check_DATA): use to specify the auxiliary
+	data files needed for `make check' rather than having the tests
+	depend on the data files.  This ensures the data files are ONLY
+	built if `make check' is run, and not built for, e.g. `make dist'.
+
+2000-04-05  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* BUGS: remove note about minctracc/Optimize/super_sample_def.c
+
+	* configure.in: set VERSION to 0.98i.
+
+2000-03-26  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* tagged as release-0_98h.
+
+2000-03-07  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* BUGS, FAQ, INSTALL.quick, ORIGIN, README, TESTING: minor
+ 	updates, such as replacing Greg by Louis, changing version
+ 	numbers, dates, etc.
+
+	* make_model.in: new.  Renamed from make_model; generated so that
+	proper version information can be included.
+
+	* Makefile.am (EXTRA_DIST): distribute make_model.in rather than built
+	script.  Drop OTHER_INFO; this info is folded into README.
+
+2000-02-28  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: check for headers math.h and stdlib.h, since we
+	test for their existence in acconfig.h!
+
+2000-02-24  Steve Robbins  <stever@bic.mni.mcgill.ca>
+
+	* Makefile.am (bin_SCRIPTS): add make_model.
+
+	* make_model: new.  Generates requisite model files by blurring
+	and subsampling a given volume.
+
+	* configure.in (MNI_CPPFLAGS, MNI_LDFLAGS): maintain $prefix
+	before /usr/local.  Remove the checks for -lc, and -lsun, since no
+	code is using the function xdr_long.  Remove checks for -lc_s and
+	-lucb; these libraries also seem superfluous.
+
+2000-02-24  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* acinclude.m4: new version; concatenation of smr.m4 and
+	ac_help_string.m4 from smr_macros-0.2.2.
+
+2000-02-20  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* */Makefile.am: 
+	* configure.in: remove INCLUDEDIRS and LIBDIRS in favour of
+	MNI_LIBS and MNI_INCLUDES.
+
+2000-02-19  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Testing/Makefile.am (CLEANFILES): clean the log files.
+
+	* Proglib/Proglib.h: don't include vax_conversions.h.
+
+	* Proglib/Makefile.am (libProglib_a_SOURCES): removed
+	vax_conversions.[ch]; add history.[ch].
+
+	* Proglib/history.[ch]: new.  Create a history string consisting
+	of the time_stamp, _plus_ the long version string.
+
+	* configure.in (MNI_INCLUDES, MNI_LIBS): use these variables,
+	rather than CPPFLAGS and LDFLAGS.  The latter must be
+	user-settable at build time.  Fail if a probed-for library
+	function is not found.
+
+2000-02-16  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: remove check of volume_io version using RCS id.
+
+	* mincchamfer: new.  Copied from Louis' home directory.
+
+	* Makefile.am (SUBDIRS): add mincchamfer.
+
+	* Testing/Makefile.am (TESTS): Nonlinear mode does not work well
+	to recover large affine transformations; so use only test2.xfm,
+	the equivalent to the old `animal.test'.
+	(test1.xfm): z-translate by 30 rather than 50 to keep ellipse
+	inside volume.
+
+2000-02-16  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* Testing/Makefile.am (TESTS): split `minctracc-linear' test
+	into three linear-{1,2,3}, add corresponding nonlinear-1 test (with 
+	more to come).  Add rules to create ellipse?_dxyz files.
+
+	* Makefile.am (AUTOMAKE_OPTIONS): add check-news, to enforce
+ 	updated NEWS file when making a release.
+
+2000-02-15  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Testing/Makefile.am (TESTS): new set of automated tests; try
+	to recover a known (linear) transformation, with some tolerance for
+	roundoff.
+
+	* NEWS: note procrustes bug fix.
+
+2000-02-14  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* minctracc/Main/Makefile.am (LDADD):
+	* minctracc/Extra_progs/Makefile.am (LDADD):
+	* mincblur/Makefile.am (LDADD): 
+	* mincbbox/Makefile.am (LDADD): 
+	* make_phantom/Makefile.am (LDADD): remove explicit -lvolume_io,
+	etc; these are already included in @LIBDIRS@
+
+2000-02-09  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* INSTALL: removed.  MNI_AutoReg now supports all the 
+	GNU standard options, and can build outside the source
+	hierarchy; so we rely on autogen.sh installing a generic
+	INSTALL file before packaging the distribution.
+
+	* configure.in: add ${prefix}/include/volume_io to includes
+	if the directory exists; this is a hack that can be removed
+	as soon as a fixed MINC is released.	
+
+	* TESTING: 
+	* README:
+	* INSTALL.quick: updates.
+
+2000-02-07  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* config.h.bot: renamed to acconfig.h.
+
+	* acconfig.h: replaced test of HAVE_RECENT_VOLUME_IO with more
+	specific feature tests.
+
+2000-02-02  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Testing/Makefile.am (TEST_LIST): add animal.test, taken from
+	minctracc/Testing/Makefile.
+
+	* mincbbox/mincbbox.c (main): 
+	* make_phantom/make_phantom.c (partial_elliptical, main): small
+	fixes to placate "gcc -Wall", e.g. removed unused variables, add
+	braces, declare main to return 'int'.
+
+	* Proglib/print_error.c (print_error_and_line_num): removed
+	fixed-length buffer.
+
+Sun Jan 30 09:49:35 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* NEWS: note revamped build process; minctracc includes nonlinear.
+
+Sat Jan 29 10:02:19 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Proglib/Makefile.am: 
+	* minctracc/Makefile.am:
+	* minctracc/Extra_progs/Makefile.am: list unused files as
+	oddities.
+
+Fri Jan 28 12:22:46 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* Makefile.am (EXTRA_DIST): add config.h.in.
+
+	* autogen.sh: added.  Script to generate files not tracked in CVS.
+	* README.CVS: added.
+
+Fri Jan 28 10:39:10 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* configure.in: revamped for automake.  Searching for required
+	libraries (netcdf, minc, and volume_io) is completely redone using
+	macros in acinclude.m4.  These macros are from the package
+	smr_macros, available from http://www.cs.mcgill.ca/~stever/software or
+	ftp://ftp.slac.stanford.edu/users/langston/autoconf.  These macros
+	enable commandline arguments to configure, rather than relying on
+	environment variables to specify the location of the libraries and
+	their include files.  Checking the volume_io revision done using a
+	C program, rather than relying on awk regular expressions.  All of
+	the code to handle setting BINDIR, etc, via environment variables
+	is gone; we rely on standard autoconf --prefix, --bindir and the
+	like.  In detail: CONFIGDIR is set to $(sysconfdir)/mni_autoreg,
+	and MODELDIR is set to $(libdir)/model, hence the defaults are the
+	same as before, only the mechanism for non-default behaviour is
+	changed.  Handling of "semi-standard C macros" such as DBL_MAX
+	simplified by moving most of the logic to config.h.bot.
+
+	* */Makefile.am:
+	* acinclude.m4:
+	* config.h.bot: added.  These are sources to generate the Makefiles,
+	and config.h.
+
+	* mincblur/mincblur.1:
+	* minctracc/minctracc.1:
+	* perl/autocrop.1:
+	* perl/mritoself.1:
+	* perl/mritotal.1: renamed from corresponding '.man1' files.
+
+	* configure:
+	* config.h.in:
+	* */Makefile: removed.  These are built files, hence unnecessary
+	to track in CVS.
+
+	* Makefile.bottom:
+	* Makefile.include.in: removed.  These are obsoleted by the
+	automake-constructed makefiles.
+	
+	* VERSION: removed.  Version is now set in configure.in.
+	* version.h.in: removed.  Version info moved into config.h.
+
+	* AUTHORS: renamed from CONTACT.
+	* COPYING: renamed from COPYRIGHT.
+	* NEWS: renamed from CHANGES.  
+	These renamings were done to adhere to GNU coding standards.
+
+Fri Jan 28 00:35:41 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* perl/autocrop.in: add @LIBDIR@ to perl's search path.
+
+	* perl/version.c: include config.h instead of ../version.h.
+
+	* mincblur/fft.c: 
+	* mincblur/apodize_data.c: include <config.h>, because definitions
+	of public and private were moved there.  The defines used to be
+	done on the compiler the command line.
+
+	* ac_config_aux/config.guess:
+	* ac_config_aux/config.sub:
+	* ac_config_aux/install-sh: removed.  These scripts will be recreated
+	by running 'automake --add-missing', so they need not be checked into
+	the CVS repository.
+
+	* */Makefile.am: new.
+	
+2000-01-27  Steve ROBBINS  <stever@bic.mni.mcgill.ca>
+
+	* VERSION: set to 0.98g.
+
+	* Makefile (ALL_SUBDIRS): added mincbbox.  This directory was
+ 	manually added to the repository earlier today, by Louis.
+  	Directories make_phantom and mincblur were manually updated at the
+ 	same time.
+
+2000-01-25  Louis COLLINS  <louis@bic.mni.mcgill.ca>
+
+	* configure.in: removed definitions to /usr/local for $PREFIX since
+	$PREFIX is defined by default in configure.
+
+Wed Jan 19 22:23:46 2000  Steve Robbins  <steve@nyongwa.montreal.qc.ca>
+
+	* ChangeLog:
+	* */.cvsignore: new.
